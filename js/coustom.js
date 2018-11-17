@@ -96,6 +96,7 @@
         var load_image = $('input.choose-color-radio[checked=checked]').data('image-variations').imagep.image_link;
         $(".cfm-template-img").html("<img src='" + temp_image + "' id='cfm-template-img-image'>");
         localStorage.setItem('bgURL', load_image);
+        $('#template-preview-bg-hidden').val(load_image);
         setBgImage();
         
      }
@@ -135,6 +136,7 @@
         $(".choose-color-radio-div").removeClass('tc-active');
         
         localStorage.setItem('bgURL', $(this).data('image-variations').imagep.image_link);
+        $('#template-preview-bg-hidden').val($(this).data('image-variations').imagep.image_link);
         
         $('.cfm-custom-background').val('');
         $('.cfm-custom-background-div').find('.tm-filename').text('');
@@ -169,6 +171,7 @@
             $preselectedColorParent.find('input.choose-color-radio').prop('checked', true);
             
             localStorage.setItem('bgURL', $preselectedColor.data('imagep'));
+            $('#template-preview-bg-hidden').val($preselectedColor.data('imagep'));
             setBgImage();  
         },500);
         
@@ -865,6 +868,7 @@
         setTimeout(function () {
             
             localStorage.setItem('bgURL', $('input.cfm-custom-background').data('file'));
+            $('#template-preview-bg-hidden').val($('input.cfm-custom-background').data('file'));
             setBgImage();
         }, 500);
     }
@@ -1041,5 +1045,6 @@ jQuery(".choose-color-radio [checked]").each(
         jQuery(".choose-color-radio").removeClass('req');
     }
 );
+
 
 

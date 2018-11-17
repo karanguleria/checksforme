@@ -13,10 +13,10 @@ function updateTemplateImage(){
     jQuery('#template-preview-hidden').val(getTemplateImage());
 }
 
-function updateTemplateImage(){
+/**--function updateTemplateImage(){
     jQuery('.cfm-template-img').find('img').attr('src', getTemplateImage());
-    jQuery('#template-preview-bg-hidden').val(getTemplateImage());
-}
+    jQuery('#template-preview--hidden').val(getTemplateImage());
+}--**/
 
 function getTemplateImage(){
     getArgs();
