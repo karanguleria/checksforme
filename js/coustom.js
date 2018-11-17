@@ -158,7 +158,7 @@
      **/
     
     
-    /*if(!(jQuery.type(getUrlParameter('tm_cart_item_key')) === "undefined")){ 
+    if(!(jQuery.type(getUrlParameter('tm_cart_item_key')) === "undefined")){ 
             setTimeout(function(){
             $preselectedColor = jQuery('input.choose-color-radio[checked=checked]');
             $preselectedColorParent = $preselectedColor.parents('li');
@@ -172,8 +172,8 @@
             setBgImage();  
         },500);
         
-    }*/
-    if(!(jQuery.type(getUrlParameter('tm_cart_item_key')) === "undefined")){
+    }
+ /*if(!(jQuery.type(getUrlParameter('tm_cart_item_key')) === "undefined")){
         setTimeout(function(){
             $preselectedColor = jQuery('input.choose-color-radio[checked=checked]');
             $preselectedColorParent = $preselectedColor.parents('li');
@@ -190,7 +190,7 @@
                 }
               });
         },500);
-    }
+    }*/
     
     /**
      * Colorbox init
@@ -486,13 +486,13 @@
      **/
     $(".select-template").find('.select-template-tag').change(function () {
         var temp_image = $(".select-template-tag").find('option:selected').data('image-variations').imagep.image_link;
-        //$(".cfm-template-img").html("<img src='" + temp_image + "' id='cfm-template-img-image'>");
+        $(".cfm-template-img").html("<img src='" + temp_image + "' id='cfm-template-img-image'>");
         localStorage.setItem("layoutURL", temp_image);
         updateTemplateImage();
     });
     $(".select-template").find('.sel-label').change(function () {
         var temp_image = $(".sel-label").find('option:selected').data('image-variations').imagep.image_link;
-        //$(".cfm-template-img").html("<img src='" + temp_image + "' id='cfm-template-img-image'>");
+        $(".cfm-template-img").html("<img src='" + temp_image + "' id='cfm-template-img-image'>");
         localStorage.setItem("layoutURL", temp_image);
         updateTemplateImage();
     });
@@ -602,9 +602,9 @@
      * Functionality to disable / enable 
      **/
      
-  /* var $suggestionBox = $('input.suggestion-box');
+   var $suggestionBox = $('input.suggestion-box');
     $('.suggestion-email').attr('type', 'email');
-    */
+    
      
    if(!(jQuery.type(getUrlParameter('tm_cart_item_key')) === "undefined")){
         
@@ -625,10 +625,7 @@
     }
      
      
-     
-     
-     
-  /* $suggestionBox.parents('ul').attr('data-tm-validation', '{"required":true}');
+    // $suggestionBox.parents('ul').attr('data-tm-validation', '{"required":true}');
     $('input.suggestion-box-check').change(function () {
         setTimeout(function () {
             if ($('input.suggestion-box-check').is(":checked")) {
@@ -645,7 +642,7 @@
                 
             }
         }, 500);
-    });*/
+    });
     /**
      *  Functionality to select individual Radio from Check Sized Envelope section
      **/
@@ -1039,6 +1036,10 @@ function setBgImage(){
   
 }
 
-
+jQuery(".choose-color-radio [checked]").each(
+    function() {
+        jQuery(".choose-color-radio").removeClass('req');
+    }
+);
 
 

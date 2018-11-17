@@ -593,6 +593,7 @@ function iconic_output_engraving_field() {
 	?>
 	<div id="template-preview">
 		<input type="hidden" id="template-preview-hidden" name="template-preview">
+		<input type="hidden" id="template-preview-bg-hidden" name="template-bg-preview">
 	</div>
 	<?php
 }
@@ -605,12 +606,14 @@ add_action( 'woocommerce_before_add_to_cart_button', 'iconic_output_engraving_fi
  
  function iconic_add_engraving_text_to_cart_item( $cart_item_data, $product_id, $variation_id ) {
     $engraving_text = filter_input( INPUT_POST, 'template-preview' );
+	$engraving_bg = filter_input( INPUT_POST, 'template-bg-preview' );
  
     if ( empty( $engraving_text ) ) {
         return $cart_item_data;
     }
  
     $cart_item_data['template-preview'] = $engraving_text;
+	$cart_item_data['template-bg-preview'] = $engraving_bg;
  
     return $cart_item_data;
 }
@@ -625,7 +628,7 @@ function iconic_display_engraving_text_cart( $item_data, $cart_item ) {
  
     $item_data[] = array(
         'key'     => __( 'Template Preview URL', 'iconic' ),
-        'value'   => '<img src="'.wc_clean( $cart_item['template-preview'] ).'">',
+        'value'   => '<div class="cart-check-preview"><img class="cart-template-preview" src="'.wc_clean( $cart_item['template-preview'] ).'"><img class="cart-bg-preview" src="'.wc_clean( $cart_item['template-bg-preview'] ).'"></div>',
         'display' => '',
     );
  
