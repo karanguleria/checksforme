@@ -12,11 +12,15 @@ function updateTemplateImage(){
     jQuery('.cfm-template-img').find('img').attr('src', getTemplateImage());
     jQuery('#template-preview-hidden').val(getTemplateImage());
 }
-
-/**--function updateTemplateImage(){
+jQuery(document).ready(function(){
+    jQuery('input.live-preview').change(function(){
+       updateTemplatebgImage();
+    });    
+});
+function  updateTemplatebgImage(){
     jQuery('.cfm-template-img').find('img').attr('src', getTemplateImage());
-    jQuery('#template-preview--hidden').val(getTemplateImage());
-}--**/
+    jQuery('#template-preview-bg-hidden').val(getTemplateImage());
+}
 
 function getTemplateImage(){
     getArgs();
@@ -102,10 +106,58 @@ function processLayout(){
       template = file.replace('.png', '');
     }
     
-    console.log(template);
+    //console.log(template);
     
     return template;
     
 }
  
- 
+ function linePlus(){ 
+    var template = processLayout();
+     var tl = template.substr(template.length - 2); // => "Tabs1"
+	var total= parseInt(tl)+1;
+	
+	template = template.replace(tl, total);
+	updateLineCheckbox(template)
+	
+	return template;
+    
+}
+
+function lineMinus(){ 
+    
+var template = processLayout();   
+     var template = processLayout();
+     var tl = template.substr(template.length - 2); // => "Tabs1"
+	 var total= parseInt(tl)-1;
+	
+	template = template.replace(tl, total);
+	updateLineCheckbox(template);
+	
+	return template
+	
+}
+
+function updateLineCheckbox(template){
+    
+        var imagep = jQuery('.sel-label').children('option[data-text="Layout '+template+'"]').data('imagep');
+        
+        if(imagep != undefined){
+            localStorage.setItem("layoutURL", imagep);
+        }
+}
+
+jQuery('document').ready(function(){
+    jQuery('#lines-checkbox').find('input[type=checkbox]').change(function(){
+        
+        if(jQuery(this).is(":checked")){
+            console.log('+');
+            console.log(linePlus());
+            } else {
+                 console.log('-');
+            console.log(lineMinus());   
+                
+                
+            }
+    });  
+});
